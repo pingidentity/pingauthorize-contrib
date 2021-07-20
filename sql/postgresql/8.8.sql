@@ -1,0 +1,516 @@
+-- *********************************************************************
+-- Update to '8.8' Database Script
+-- *********************************************************************
+-- Change Log: META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/symphonic-changelog.xml
+-- Ran at: 7/20/21 9:58 AM
+-- Against: papadmin@jdbc:postgresql://localhost:5432/pap?allowEncodingChanges=false&ApplicationName=PostgreSQL+JDBC+Driver&autosave=never&binaryTransfer=true&binaryTransferDisable=&binaryTransferEnable=&cancelSignalTimeout=10&cleanupSavepoints=false&connectTimeout=10&databaseMetadataCacheFields=65536&databaseMetadataCacheFieldsMiB=5&defaultRowFetchSize=0&disableColumnSanitiser=false&escapeSyntaxCallMode=select&gsslib=auto&hideUnprivilegedObjects=false&hostRecheckSeconds=10&jaasLogin=true&loadBalanceHosts=false&loginTimeout=0&logServerErrorDetail=true&logUnclosedConnections=false&preferQueryMode=extended&preparedStatementCacheQueries=256&preparedStatementCacheSizeMiB=5&prepareThreshold=5&readOnly=false&readOnlyMode=transaction&receiveBufferSize=-1&reWriteBatchedInserts=false&sendBufferSize=-1&socketTimeout=0&sspiServiceClass=POSTGRES&targetServerType=any&tcpKeepAlive=false&unknownLength=2147483647&useSpnego=false&xmlFactoryFactory=
+-- Liquibase version: 3.10.2
+-- *********************************************************************
+
+SET SEARCH_PATH TO public;
+
+-- Lock Database
+UPDATE public.databasechangeloglock SET LOCKED = TRUE, LOCKEDBY = '172.16.252.128 (172.16.252.128)', LOCKGRANTED = '2021-07-20 09:58:24.89' WHERE ID = 1 AND LOCKED = FALSE;
+
+SET SEARCH_PATH TO public;
+
+SET SEARCH_PATH TO public;
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.2/modify-definition-table-parentId.xml::1::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public."Definition" ALTER COLUMN "parentId" TYPE VARCHAR(36) USING ("parentId"::VARCHAR(36));
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.2/modify-definition-table-parentId.xml', NOW(), 165, '8:f4aa8c74420c3a2746eda3e8a835385f', 'modifyDataType columnName=parentId, tableName=Definition', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.2/changelog.xml::1::symphonic
+SET SEARCH_PATH TO public;
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID, TAG) VALUES ('1', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.2/changelog.xml', NOW(), 166, '8:c646a30b05282749a451e0cd02d86276', 'tagDatabase', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL, '8.2');
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.3/add-constant-resolver-columns.xml::1::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public."AttributeResolver" ADD value TEXT;
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.3/add-constant-resolver-columns.xml', NOW(), 167, '8:3cf64fff68b2e57ff5df583ac5de509d', 'addColumn tableName=AttributeResolver', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.3/add-constant-resolver-columns.xml::2::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public."AttributeResolver" ADD value_type VARCHAR(255);
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('2', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.3/add-constant-resolver-columns.xml', NOW(), 168, '8:1a2b672e2eff9566d84796afd95d3ddb', 'addColumn tableName=AttributeResolver', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.3/changelog.xml::1::symphonic
+SET SEARCH_PATH TO public;
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID, TAG) VALUES ('1', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.3/changelog.xml', NOW(), 169, '8:f1f9c8cc3d0899e4040d6b185b086ea2', 'tagDatabase', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL, '8.3');
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.4/add-deployment_package_approval-table.xml::2::symphonic
+SET SEARCH_PATH TO public;
+
+CREATE TABLE public.deployment_package_approval (id BIGINT GENERATED BY DEFAULT AS IDENTITY NOT NULL, CONSTRAINT pk_deployment_package_approval PRIMARY KEY (id));
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('2', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.4/add-deployment_package_approval-table.xml', NOW(), 170, '8:327790177fe71d3a7b7ae8e0246400d8', 'createTable tableName=deployment_package_approval', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.4/add-deployment_package_approval-table.xml::3::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public.deployment_package_approval ADD deployment_package_id VARCHAR(36) NOT NULL;
+
+ALTER TABLE public.deployment_package_approval ADD user_id VARCHAR(1000) NOT NULL;
+
+ALTER TABLE public.deployment_package_approval ADD date_approved TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW();
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('3', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.4/add-deployment_package_approval-table.xml', NOW(), 171, '8:f9a5a4fa462a09e29055e8ee7bf3fe58', 'addColumn tableName=deployment_package_approval; addColumn tableName=deployment_package_approval; addColumn tableName=deployment_package_approval', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.4/add-deployment_package_approval-table.xml::4::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public.deployment_package_approval ADD CONSTRAINT uq_deployment_package_approval_deployment_package_id_user_id UNIQUE (deployment_package_id, user_id);
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('4', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.4/add-deployment_package_approval-table.xml', NOW(), 172, '8:22602dbf7d59c1b230fe3b1f777da5b1', 'addUniqueConstraint constraintName=uq_deployment_package_approval_deployment_package_id_user_id, tableName=deployment_package_approval', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.4/add-deployment_package_approval-table.xml::5::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public.deployment_package_approval ADD CONSTRAINT fk_deployment_package_approval_deployment_package FOREIGN KEY (deployment_package_id) REFERENCES public."DeploymentPackage" (id) ON DELETE CASCADE;
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('5', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.4/add-deployment_package_approval-table.xml', NOW(), 173, '8:e39e7412ceb5fa04c840ece487a763f8', 'addForeignKeyConstraint baseTableName=deployment_package_approval, constraintName=fk_deployment_package_approval_deployment_package, referencedTableName=DeploymentPackage', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.4/changelog.xml::1::symphonic
+SET SEARCH_PATH TO public;
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID, TAG) VALUES ('1', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.4/changelog.xml', NOW(), 174, '8:b87f3973525faccabdf1f68773c6c9c1', 'tagDatabase', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL, '8.4');
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.5/changelog.xml::1::symphonic
+SET SEARCH_PATH TO public;
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID, TAG) VALUES ('1', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.5/changelog.xml', NOW(), 175, '8:37b329296a9dd759469d63cdc0ac2945', 'tagDatabase', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL, '8.5');
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-keystore_configuration-table.xml::1::symphonic
+SET SEARCH_PATH TO public;
+
+CREATE TABLE public.keystore_configuration (id BIGINT GENERATED BY DEFAULT AS IDENTITY);
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-keystore_configuration-table.xml', NOW(), 176, '8:85edb32775e62e91dd4a84659d2afe13', 'createTable tableName=keystore_configuration', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-keystore_configuration-table.xml::3::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public.keystore_configuration ADD CONSTRAINT pk_keystore_configuration PRIMARY KEY (id);
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('3', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-keystore_configuration-table.xml', NOW(), 177, '8:d94765c775ff28730b73f4b61c548286', 'addPrimaryKey constraintName=pk_keystore_configuration, tableName=keystore_configuration', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-keystore_configuration-table.xml::4::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public.keystore_configuration ADD source VARCHAR(255) NOT NULL;
+
+ALTER TABLE public.keystore_configuration ADD store_name TEXT NOT NULL;
+
+ALTER TABLE public.keystore_configuration ADD alias TEXT NOT NULL;
+
+ALTER TABLE public.keystore_configuration ADD alias_password TEXT;
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('4', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-keystore_configuration-table.xml', NOW(), 178, '8:ba5cc154b8987db905cb3c5608f7333a', 'addColumn tableName=keystore_configuration', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-tls_settings-table.xml::1::symphonic
+SET SEARCH_PATH TO public;
+
+CREATE TABLE public.tls_settings (id BIGINT GENERATED BY DEFAULT AS IDENTITY);
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-tls_settings-table.xml', NOW(), 179, '8:b2e2d57f6b4d714d6ec035edf4569fa7', 'createTable tableName=tls_settings', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-tls_settings-table.xml::3::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public.tls_settings ADD CONSTRAINT pk_tls_settings PRIMARY KEY (id);
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('3', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-tls_settings-table.xml', NOW(), 180, '8:845f5229d6edb5486efa4063e7e34ccc', 'addPrimaryKey constraintName=pk_tls_settings, tableName=tls_settings', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-tls_settings-table.xml::4::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public.tls_settings ADD tls_validation_type VARCHAR(255) NOT NULL;
+
+ALTER TABLE public.tls_settings ADD mtls_validation BOOLEAN NOT NULL;
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('4', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-tls_settings-table.xml', NOW(), 181, '8:1868c1f3151bf525375b3b05cbce5642', 'addColumn tableName=tls_settings', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-tls_settings-table.xml::5::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public.tls_settings ADD tls_truststore_configuration_id BIGINT;
+
+ALTER TABLE public.tls_settings ADD mtls_keystore_configuration_id BIGINT;
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('5', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-tls_settings-table.xml', NOW(), 182, '8:7dccafdf759c949d53c52354528a1b7c', 'addColumn tableName=tls_settings', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-tls_settings-table.xml::7::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public.tls_settings ADD CONSTRAINT fk_tls_settings_tls_keystore_configuration FOREIGN KEY (tls_truststore_configuration_id) REFERENCES public.keystore_configuration (id) ON DELETE CASCADE;
+
+ALTER TABLE public.tls_settings ADD CONSTRAINT fk_tls_settings_mtls_keystore_configuration FOREIGN KEY (mtls_keystore_configuration_id) REFERENCES public.keystore_configuration (id) ON DELETE CASCADE;
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('7', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-tls_settings-table.xml', NOW(), 183, '8:4bcc2b21ecf8db3926c287e788b5bd7e', 'addForeignKeyConstraint baseTableName=tls_settings, constraintName=fk_tls_settings_tls_keystore_configuration, referencedTableName=keystore_configuration; addForeignKeyConstraint baseTableName=tls_settings, constraintName=fk_tls_settings_mtls_keys...', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-tls_settings-table.xml::8::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public."RestSettings" ADD tls_settings_id BIGINT;
+
+ALTER TABLE public."LdapSettings" ADD tls_settings_id BIGINT;
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('8', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-tls_settings-table.xml', NOW(), 184, '8:5a0a0ff79238f22074fadfdc7885d699', 'addColumn tableName=RestSettings; addColumn tableName=LdapSettings', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-tls_settings-table.xml::10::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public."RestSettings" ADD CONSTRAINT fk_rest_settings_tls_settings FOREIGN KEY (tls_settings_id) REFERENCES public.tls_settings (id) ON DELETE CASCADE;
+
+ALTER TABLE public."LdapSettings" ADD CONSTRAINT fk_ldap_settings_tls_settings FOREIGN KEY (tls_settings_id) REFERENCES public.tls_settings (id) ON DELETE CASCADE;
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('10', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-tls_settings-table.xml', NOW(), 185, '8:7278c6cf621b69ee19acd600c6186598', 'addForeignKeyConstraint baseTableName=RestSettings, constraintName=fk_rest_settings_tls_settings, referencedTableName=tls_settings; addForeignKeyConstraint baseTableName=LdapSettings, constraintName=fk_ldap_settings_tls_settings, referencedTableNa...', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-permissions-table.xml::1::symphonic
+SET SEARCH_PATH TO public;
+
+CREATE TABLE public.permissions (id BIGINT GENERATED BY DEFAULT AS IDENTITY);
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-permissions-table.xml', NOW(), 186, '8:987ebf6d5ffcae4009583fd495b7c6f1', 'createTable tableName=permissions', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-permissions-table.xml::3::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public.permissions ADD CONSTRAINT pk_permissions PRIMARY KEY (id);
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('3', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-permissions-table.xml', NOW(), 187, '8:5f62298d2b25c9f6e87e3741a9df0a65', 'addPrimaryKey constraintName=pk_permissions, tableName=permissions', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-permissions-table.xml::4::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public.permissions ADD inherit BOOLEAN DEFAULT TRUE NOT NULL;
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('4', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-permissions-table.xml', NOW(), 188, '8:9cb914bf5d5dc417822a064a862fbc22', 'addColumn tableName=permissions', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-permissions-table.xml::8::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public."Definition" ADD permissions_id BIGINT;
+
+ALTER TABLE public."PolicySet2" ADD permissions_id BIGINT;
+
+ALTER TABLE public."Policy2" ADD permissions_id BIGINT;
+
+ALTER TABLE public."Rule2" ADD permissions_id BIGINT;
+
+ALTER TABLE public."Statement2" ADD permissions_id BIGINT;
+
+ALTER TABLE public."Target2" ADD permissions_id BIGINT;
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('8', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-permissions-table.xml', NOW(), 189, '8:d93fed15f8aaab2437d6200bac622633', 'addColumn tableName=Definition; addColumn tableName=PolicySet2; addColumn tableName=Policy2; addColumn tableName=Rule2; addColumn tableName=Statement2; addColumn tableName=Target2', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-permissions-table.xml::10::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public."Definition" ADD CONSTRAINT fk_definition_permissions FOREIGN KEY (permissions_id) REFERENCES public.permissions (id) ON DELETE CASCADE;
+
+ALTER TABLE public."PolicySet2" ADD CONSTRAINT fk_policyset2_permissions FOREIGN KEY (permissions_id) REFERENCES public.permissions (id) ON DELETE CASCADE;
+
+ALTER TABLE public."Policy2" ADD CONSTRAINT fk_policy2_permissions FOREIGN KEY (permissions_id) REFERENCES public.permissions (id) ON DELETE CASCADE;
+
+ALTER TABLE public."Rule2" ADD CONSTRAINT fk_rule2_permissions FOREIGN KEY (permissions_id) REFERENCES public.permissions (id) ON DELETE CASCADE;
+
+ALTER TABLE public."Statement2" ADD CONSTRAINT fk_statement2_permissions FOREIGN KEY (permissions_id) REFERENCES public.permissions (id) ON DELETE CASCADE;
+
+ALTER TABLE public."Target2" ADD CONSTRAINT fk_target2_permissions FOREIGN KEY (permissions_id) REFERENCES public.permissions (id) ON DELETE CASCADE;
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('10', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-permissions-table.xml', NOW(), 190, '8:02af0f43d127e9f0ea531c87b472dbd9', 'addForeignKeyConstraint baseTableName=Definition, constraintName=fk_definition_permissions, referencedTableName=permissions; addForeignKeyConstraint baseTableName=PolicySet2, constraintName=fk_policyset2_permissions, referencedTableName=permission...', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-role_permission-table.xml::1::symphonic
+SET SEARCH_PATH TO public;
+
+CREATE TABLE public.role_permissions (id BIGINT GENERATED BY DEFAULT AS IDENTITY, permissions_id BIGINT);
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-role_permission-table.xml', NOW(), 191, '8:2e2bd32dfcbb3d9f551a01a640f04939', 'createTable tableName=role_permissions', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-role_permission-table.xml::3::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public.role_permissions ADD CONSTRAINT pk_role_permissions PRIMARY KEY (id);
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('3', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-role_permission-table.xml', NOW(), 192, '8:c7ed06f22343b14c60de5e679429c76b', 'addPrimaryKey constraintName=pk_role_permissions, tableName=role_permissions', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-role_permission-table.xml::4::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public.role_permissions ADD permission VARCHAR(1000) NOT NULL;
+
+ALTER TABLE public.role_permissions ADD role VARCHAR(1000) NOT NULL;
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('4', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-role_permission-table.xml', NOW(), 193, '8:629e1bdc57fd290ca9227f131366e5d9', 'addColumn tableName=role_permissions', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-role_permission-table.xml::5::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public.role_permissions ADD CONSTRAINT fk_role_permissions_permissions FOREIGN KEY (permissions_id) REFERENCES public.permissions (id) ON DELETE CASCADE;
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('5', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-role_permission-table.xml', NOW(), 194, '8:d6c8856b685dd31dabeaab32b79f0b6b', 'addForeignKeyConstraint baseTableName=role_permissions, constraintName=fk_role_permissions_permissions, referencedTableName=permissions', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-role_permission-table.xml::6::symphonic
+SET SEARCH_PATH TO public;
+
+CREATE INDEX ix_role_permissions_permissions_id ON public.role_permissions(permissions_id);
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('6', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/add-role_permission-table.xml', NOW(), 195, '8:9f21ac2634f468cd3a8bad28ff72aa2d', 'createIndex indexName=ix_role_permissions_permissions_id, tableName=role_permissions', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/create-value-processor-table.xml::1::symphonic
+SET SEARCH_PATH TO public;
+
+CREATE TABLE public.value_processor (id BIGINT GENERATED ALWAYS AS IDENTITY);
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/create-value-processor-table.xml', NOW(), 196, '8:b361f8aad793f45668ba3920d5ca883e', 'createTable tableName=value_processor', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/create-value-processor-table.xml::3::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public.value_processor ADD dtype VARCHAR(31) NOT NULL;
+
+ALTER TABLE public.value_processor ADD expression TEXT;
+
+ALTER TABLE public.value_processor ADD value_type VARCHAR(255);
+
+ALTER TABLE public.value_processor ADD value_processor_definition_id VARCHAR(36);
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('3', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/create-value-processor-table.xml', NOW(), 197, '8:2e577161570793238526812a57983c1e', 'addColumn tableName=value_processor', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/create-value-processor-table.xml::4::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public.value_processor ADD CONSTRAINT pk_value_processor PRIMARY KEY (id);
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('4', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/create-value-processor-table.xml', NOW(), 198, '8:06a3bab40787f3b7305590965ba5b186', 'addPrimaryKey constraintName=pk_value_processor, tableName=value_processor', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/alter-definition-table-add-columns-for-value-processors.xml::1::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public."Definition" ADD value_type VARCHAR(255);
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/alter-definition-table-add-columns-for-value-processors.xml', NOW(), 199, '8:209e3455d6b446c1edfd825f5d44e889', 'addColumn tableName=Definition', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/alter-definition-table-add-columns-for-value-processors.xml::2::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public."Definition" ADD value_processor_id BIGINT;
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('2', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/alter-definition-table-add-columns-for-value-processors.xml', NOW(), 200, '8:d56b87d110fe98bd082c43efd44579fd', 'addColumn tableName=Definition', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/alter-definition-table-add-columns-for-value-processors.xml::4::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public."Definition" ADD CONSTRAINT fk_definition_value_processor FOREIGN KEY (value_processor_id) REFERENCES public.value_processor (id);
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('4', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/alter-definition-table-add-columns-for-value-processors.xml', NOW(), 201, '8:26d42b6894e7110bf2a80546b8776978', 'addForeignKeyConstraint baseTableName=Definition, constraintName=fk_definition_value_processor, referencedTableName=value_processor', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/migrate-data-from-expressionvalueresolversettings-table.xml::1::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public.value_processor ADD temp_definition_id VARCHAR(36);
+
+ALTER TABLE public.value_processor ADD temp_definition_version VARCHAR(36);
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/migrate-data-from-expressionvalueresolversettings-table.xml', NOW(), 202, '8:4d5bc3d4f539fbcde7d335fe137bbf46', 'addColumn tableName=value_processor', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/migrate-data-from-expressionvalueresolversettings-table.xml::2::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public.value_processor ADD CONSTRAINT fk_value_processor_definition FOREIGN KEY (temp_definition_id, temp_definition_version) REFERENCES public."Definition" (id, version);
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('2', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/migrate-data-from-expressionvalueresolversettings-table.xml', NOW(), 203, '8:2bd7e4a83f7f9501d7e8b2890304eae9', 'addForeignKeyConstraint baseTableName=value_processor, constraintName=fk_value_processor_definition, referencedTableName=Definition', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/migrate-data-from-expressionvalueresolversettings-table.xml::3::symphonic
+SET SEARCH_PATH TO public;
+
+INSERT INTO public.value_processor(dtype, expression, value_type, temp_definition_id, temp_definition_version)
+    (SELECT e."expressionType", e.expression, e."valueType", d.id, d.version FROM public."ExpressionValueResolverSettings" e
+        INNER JOIN public."Definition" d ON e."ExpressionValueResolverSettings_ID" = d."expressionValueResolverSettings_ExpressionValueResolveru8c5_OID"
+        WHERE e."expressionType" != 'NONE' AND e.expression IS NOT NULL);
+
+UPDATE public."Definition" d SET value_type =
+    (SELECT "valueType" FROM public."ExpressionValueResolverSettings" e
+         WHERE e."ExpressionValueResolverSettings_ID" = d."expressionValueResolverSettings_ExpressionValueResolveru8c5_OID")
+    WHERE d."expressionValueResolverSettings_ExpressionValueResolveru8c5_OID" IS NOT NULL;
+
+UPDATE public."Definition" d SET value_processor_id =
+    (SELECT vp.id FROM public.value_processor vp
+         WHERE vp.temp_definition_id = d.id AND vp.temp_definition_version = d.version);
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('3', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/migrate-data-from-expressionvalueresolversettings-table.xml', NOW(), 204, '8:746cea8173de393da92303ce7d6acf68', 'sqlFile; sqlFile', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/migrate-data-from-expressionvalueresolversettings-table.xml::5::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public.value_processor DROP CONSTRAINT fk_value_processor_definition;
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('5', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/migrate-data-from-expressionvalueresolversettings-table.xml', NOW(), 205, '8:e479e823984ace8f6d1e35363b7db347', 'dropForeignKeyConstraint baseTableName=value_processor, constraintName=fk_value_processor_definition', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/migrate-data-from-expressionvalueresolversettings-table.xml::6::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public.value_processor DROP COLUMN temp_definition_id;
+
+ALTER TABLE public.value_processor DROP COLUMN temp_definition_version;
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('6', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/migrate-data-from-expressionvalueresolversettings-table.xml', NOW(), 206, '8:f8d9d8c71a3cd6537158015a7fc394d3', 'dropColumn tableName=value_processor', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/deprecate-expressionvalueresolversettings-table.xml::1::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public."Definition" RENAME COLUMN "expressionValueResolverSettings_ExpressionValueResolveru8c5_OID" TO legacy_expression_value_resolver_settings_id;
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/deprecate-expressionvalueresolversettings-table.xml', NOW(), 207, '8:aaf0ecbfb6d0409c57a5f9b62c3a8466', 'renameColumn newColumnName=legacy_expression_value_resolver_settings_id, oldColumnName=expressionValueResolverSettings_ExpressionValueResolveru8c5_OID, tableName=Definition', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/deprecate-expressionvalueresolversettings-table.xml::3::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public."Definition" DROP CONSTRAINT "Definition_FK1";
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('3', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/deprecate-expressionvalueresolversettings-table.xml', NOW(), 208, '8:b3dfcff472208a18a4d6d683477b74f3', 'dropForeignKeyConstraint baseTableName=Definition, constraintName=Definition_FK1', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/deprecate-expressionvalueresolversettings-table.xml::4::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public."ExpressionValueResolverSettings" RENAME TO legacy_expression_value_resolver_settings;
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('4', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/deprecate-expressionvalueresolversettings-table.xml', NOW(), 209, '8:db93d5eb9a51398c7c35719333a38e61', 'renameTable newTableName=legacy_expression_value_resolver_settings, oldTableName=ExpressionValueResolverSettings', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/changelog.xml::1::symphonic
+SET SEARCH_PATH TO public;
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID, TAG) VALUES ('1', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.6/changelog.xml', NOW(), 210, '8:a49484ecbdc6977a5d519e089621f99f', 'tagDatabase', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL, '8.6');
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.7/add-name-column-to-value-processor-table.xml::1::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public.value_processor ADD name VARCHAR(255);
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.7/add-name-column-to-value-processor-table.xml', NOW(), 211, '8:7d83becd40cc99f98b5f4daaf94627f9', 'addColumn tableName=value_processor', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.7/drop-expressionvalueresolversettings-table.xml::1::symphonic
+SET SEARCH_PATH TO public;
+
+DROP INDEX public."Definition_N50";
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.7/drop-expressionvalueresolversettings-table.xml', NOW(), 212, '8:bf14a8b3939ccf1feb44e71d7c4a58df', 'dropIndex indexName=Definition_N50, tableName=Definition', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.7/drop-expressionvalueresolversettings-table.xml::2::symphonic
+SET SEARCH_PATH TO public;
+
+DROP TABLE public.legacy_expression_value_resolver_settings;
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('2', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.7/drop-expressionvalueresolversettings-table.xml', NOW(), 213, '8:84e46e699b34b827ce13594442e4e9ee', 'dropTable tableName=legacy_expression_value_resolver_settings', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.7/drop-expressionvalueresolversettings-table.xml::3::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public."Definition" DROP COLUMN legacy_expression_value_resolver_settings_id;
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('3', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.7/drop-expressionvalueresolversettings-table.xml', NOW(), 214, '8:1e53d106fe28e3ac25b052917d4e957b', 'dropColumn columnName=legacy_expression_value_resolver_settings_id, tableName=Definition', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.7/create-processor_element-table.xml::1::symphonic
+SET SEARCH_PATH TO public;
+
+CREATE TABLE public.processor_element (chain_id BIGINT NOT NULL, element_id BIGINT NOT NULL, order_id INTEGER NOT NULL);
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.7/create-processor_element-table.xml', NOW(), 215, '8:1b124a6515653698542dadf5212c6c44', 'createTable tableName=processor_element', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.7/create-processor_element-table.xml::3::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public.processor_element ADD CONSTRAINT pk_processor_element PRIMARY KEY (chain_id, element_id);
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('3', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.7/create-processor_element-table.xml', NOW(), 216, '8:5952e0fd4b2720f4e3b3cc75643900f4', 'addPrimaryKey constraintName=pk_processor_element, tableName=processor_element', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.7/create-processor_element-table.xml::4::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public.processor_element ADD CONSTRAINT fk_processor_element_value_processor_chain FOREIGN KEY (chain_id) REFERENCES public.value_processor (id);
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('4', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.7/create-processor_element-table.xml', NOW(), 217, '8:11f8395c10c43898bedb31d87a3db723', 'addForeignKeyConstraint baseTableName=processor_element, constraintName=fk_processor_element_value_processor_chain, referencedTableName=value_processor', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.7/create-processor_element-table.xml::5::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public.processor_element ADD CONSTRAINT fk_processor_element_value_processor_element FOREIGN KEY (element_id) REFERENCES public.value_processor (id);
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('5', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.7/create-processor_element-table.xml', NOW(), 218, '8:b46213ff436ce2877da4d945393a87d5', 'addForeignKeyConstraint baseTableName=processor_element, constraintName=fk_processor_element_value_processor_element, referencedTableName=value_processor', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.7/create-processor_element-table.xml::6::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public.processor_element ADD CONSTRAINT uq_processor_element UNIQUE (chain_id, order_id);
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('6', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.7/create-processor_element-table.xml', NOW(), 219, '8:01f547c630562d8b9a0cad0a4167b8d1', 'addUniqueConstraint constraintName=uq_processor_element, tableName=processor_element', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.7/create-processor_element-table.xml::7::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public.processor_element ADD CONSTRAINT ck_processor_element CHECK (chain_id != element_id);
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('7', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.7/create-processor_element-table.xml', NOW(), 220, '8:97a3fe9570299a112a917e63dc9bc8f9', 'sql', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.7/add-processor-column-to-attribute-resolver-table.xml::1::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public."AttributeResolver" ADD value_processor_id BIGINT;
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.7/add-processor-column-to-attribute-resolver-table.xml', NOW(), 221, '8:751815d2b239a0eb0678d73535c81324', 'addColumn tableName=AttributeResolver', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.7/add-processor-column-to-attribute-resolver-table.xml::3::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public."AttributeResolver" ADD CONSTRAINT fk_attribute_resolver_value_processor FOREIGN KEY (value_processor_id) REFERENCES public.value_processor (id);
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('3', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.7/add-processor-column-to-attribute-resolver-table.xml', NOW(), 222, '8:72e4d7d2ebfe61383ff5720bc3a133cb', 'addForeignKeyConstraint baseTableName=AttributeResolver, constraintName=fk_attribute_resolver_value_processor, referencedTableName=value_processor', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.7/add-name-column-to-attribute-resolver-table.xml::1::symphonic
+SET SEARCH_PATH TO public;
+
+ALTER TABLE public."AttributeResolver" ADD name VARCHAR(255);
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.7/add-name-column-to-attribute-resolver-table.xml', NOW(), 223, '8:c095d09f351bfe350324793e7f8bee20', 'addColumn tableName=AttributeResolver', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL);
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.7/changelog.xml::1::symphonic
+SET SEARCH_PATH TO public;
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID, TAG) VALUES ('1', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.7/changelog.xml', NOW(), 224, '8:45726b9792c759a1a47e4e424df0bd40', 'tagDatabase', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL, '8.7');
+
+-- Changeset META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.8/changelog.xml::1::symphonic
+SET SEARCH_PATH TO public;
+
+INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID, TAG) VALUES ('1', 'symphonic', 'META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/8.8/changelog.xml', NOW(), 225, '8:416ef0dc6e01e5481f4ab63a1b50aec9', 'tagDatabase', '', 'EXECUTED', NULL, NULL, '3.10.2', NULL, '8.8');
+
+-- Release Database Lock
+SET SEARCH_PATH TO public;
+
+UPDATE public.databasechangeloglock SET LOCKED = FALSE, LOCKEDBY = NULL, LOCKGRANTED = NULL WHERE ID = 1;
+
+SET SEARCH_PATH TO public;
+
+-- Grant privileges to user
+DO $$
+    BEGIN
+        IF EXISTS (SELECT 1 FROM pg_roles WHERE rolname = 'pap_user') THEN
+            REVOKE ALL ON SCHEMA public FROM PUBLIC;
+            GRANT USAGE ON SCHEMA public TO pap_user;
+            GRANT SELECT ON ALL TABLES IN SCHEMA public TO pap_user;
+            GRANT INSERT ON ALL TABLES IN SCHEMA public TO pap_user;
+            GRANT UPDATE ON ALL TABLES IN SCHEMA public TO pap_user;
+            GRANT DELETE ON ALL TABLES IN SCHEMA public TO pap_user;
+            GRANT USAGE ON ALL SEQUENCES IN SCHEMA public TO pap_user;
+        END IF;
+    END;
+$$ LANGUAGE plpgsql;
