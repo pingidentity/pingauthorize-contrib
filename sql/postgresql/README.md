@@ -6,8 +6,12 @@ and grant access to `pap_user` (the suggested application username).
 the [PingAuthorize documentation](https://docs.pingidentity.com/csh?Product=paz-latest&Page=home).
 ## Manual installation
 This section describes how to initialize a policy database running on a traditional (non-container) system.
-Installing and configuring PostgreSQL for your system is outside the scope of this document. The commands in this section
-are assumed to be run by an authenticated PostgreSQL superuser (for example `postgres`).
+
+### Before you begin
+* Install and configure PostgreSQL for your system.
+* Ensure you are signed on to your system as an authenticated PostgreSQL superuser (for example `postgres`).
+
+### Steps
 1. Create the `pap_user` role.
 ```
 createuser --username=pap --pwprompt
@@ -20,10 +24,9 @@ createdb my_pap_db
 ```
 psql --dbname=my_pap_db --file="<pingauthorize-contrib-root>/sql/postgresql/init-policy-database.sql"
 ```
-You should now have an initialized policy database. See the [PingAuthorize
-documentation](https://docs.pingidentity.com/csh?Product=paz-latest&Page=home) under
-"Installing the PingAuthorize Policy Editor manually" for instructions on configuring the 
-Policy Editor to connect to your PostgreSQL instance.
+You should now have an initialized policy database. For instructions on configuring the Policy Editor to connect to
+your PostgreSQL instance, see "Installing the PingAuthorize Policy Editor manually" in the [PingAuthorize
+documentation](https://docs.pingidentity.com/csh?Product=paz-latest&Page=home).
 
 ## Docker installation
 This section describes how to use the scripts in this directory to initialize a policy database running the official
@@ -71,6 +74,6 @@ docker run -it --rm \
 ```
 You should now have an initialized policy database in your container. Run the PingAuthorize Policy Editor on the
 same network, providing the appropriate environment variables to connect to the PostgreSQL instance 
-(see "Starting PingAuthorize Policy Editor" at the 
+(see "Starting PingAuthorize Policy Editor" in the 
 [PingAuthorize documentation](https://docs.pingidentity.com/csh?Product=paz-latest&Page=home) for more details
 on the available environment variables).
