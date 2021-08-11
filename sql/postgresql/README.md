@@ -14,7 +14,7 @@ This section describes how to initialize a policy database running on a traditio
 ### Steps
 1. Create the `pap_user` role.
 ```
-createuser --username=pap --pwprompt
+createuser --pwprompt pap_user
 ```
 2. Create the database.
 ```
