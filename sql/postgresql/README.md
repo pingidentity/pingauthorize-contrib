@@ -74,5 +74,5 @@ docker run -it --rm \
 You should now have an initialized policy database in your container. Run the PingAuthorize Policy Editor on the
 same network, providing the appropriate environment variables to connect to the PostgreSQL instance 
 (see "[Installing PingAuthorize Policy Editor using Docker](https://docs.pingidentity.com/csh?Product=paz-latest&context=pingauthorize_install_pe_docker)"
-for instructions on how to run the container and "[Starting PingAuthorize Policy Editor](https://docs.pingidentity.com/csh?Product=paz-latest&context=pingauthorize_install_pe_docker)"
+for instructions on how to run the container and "[Starting PingAuthorize Policy Editor](https://docs.pingidentity.com/csh?Product=paz-latest&context=pingauthorize_start_pe)"
 for more details on the available environment variables).
