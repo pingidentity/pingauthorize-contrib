@@ -25,8 +25,7 @@ createdb my_pap_db
 psql --dbname=my_pap_db --file="<pingauthorize-contrib-root>/sql/postgresql/init-policy-database.sql"
 ```
 You should now have an initialized policy database. For instructions on configuring the Policy Editor to connect to
-your PostgreSQL instance, see "Installing the PingAuthorize Policy Editor manually" in the [PingAuthorize
-documentation](https://docs.pingidentity.com/csh?Product=paz-latest&Page=home).
+your PostgreSQL instance, see "[Installing the PingAuthorize Policy Editor manually](https://docs.pingidentity.com/csh?Product=paz-latest&context=pingauthorize_install_pe_noninteractive)".
 
 ## Docker installation
 This section describes how to use the scripts in this directory to initialize a policy database running the official
@@ -74,6 +73,6 @@ docker run -it --rm \
 ```
 You should now have an initialized policy database in your container. Run the PingAuthorize Policy Editor on the
 same network, providing the appropriate environment variables to connect to the PostgreSQL instance 
-(see "Starting PingAuthorize Policy Editor" in the 
-[PingAuthorize documentation](https://docs.pingidentity.com/csh?Product=paz-latest&Page=home) for more details
-on the available environment variables).
+(see "[Installing PingAuthorize Policy Editor using Docker](https://docs.pingidentity.com/csh?Product=paz-latest&context=pingauthorize_install_pe_docker)"
+for instructions on how to run the container and "[Starting PingAuthorize Policy Editor](https://docs.pingidentity.com/csh?Product=paz-latest&context=pingauthorize_install_pe_docker)"
+for more details on the available environment variables).
