@@ -2,6 +2,10 @@
 # using the --optionsFile option. Run `setup --help` for further
 # instructions.
 core:
+  # Use a JWT claim other than "sub" for the OIDC User ID. 
+  #
+  #  Authentication.oidcUserIdField: jwt_claim
+  #
   # Add policy configuration keys here. The value for a policy 
   # configuration key may be provided via an environment variable 
   # using the notation '${environment-variable}'.
@@ -70,13 +74,26 @@ deploymentPackageStores:
   #     prefix: azure-blob-storage-prefix
   #
 securityHeaders:
-  # Configure the values that the Policy Administration GUI will set in its
+  # Configure the values that the Policy Editor will set in its
   # responses for the X-Frame-Options, Content-Security-Policy, and/or
   # Access-Control-Allow-Origin HTTP security headers here.
   #
   # X-Frame-Options: "deny"
   # Content-Security-Policy: "default-src https:"
   # Access-Control-Allow-Origin: "*"
+ui:
+  # Individually configure the OpenID Connect endpoints. This only applies when configuring the Policy Editor
+  # to use OpenID Connect for authentication.
+  # 
+  # authClientConfig:
+  #   authWellKnownEndpoints:
+  #     issuer: https://identity-server:<port_no>
+  #     authorizationEndpoint: https://identity-server:<port_no>/as/authorization.oauth2
+  #     jwksUri: https://identity-server:<port_no>/pf/JWKS
+  #     tokenEndpoint: https://identity-server:<port_no>/as/token.oauth2
+  #     userinfoEndpoint: https://identity-server:<port_no>/idp/userinfo.openid
+  #     endSessionEndpoint: https://identity-server:<port_no>/idp/startSLO.ping
+  #     introspectionEndpoint: https://identity-server:<port_no>/as/introspect.oauth2
 logging:
   level: INFO
   loggers:
