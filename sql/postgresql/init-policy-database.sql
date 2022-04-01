@@ -1,5 +1,5 @@
 -- *********************************************************************
--- Update Database Script
+-- Initialize Policy Database Script
 -- *********************************************************************
 -- Change Log: META-INF/resourcesPrivate/com.symphonicsoft.db.cli/liquibase/symphonic-changelog.xml
 
@@ -19,7 +19,7 @@ DELETE FROM public.databasechangeloglock;
 INSERT INTO public.databasechangeloglock (ID, LOCKED) VALUES (1, FALSE);
 
 -- Lock Database
-UPDATE public.databasechangeloglock SET LOCKED = TRUE, LOCKEDBY = '10.2.2.103 (10.2.2.103)', LOCKGRANTED = '2022-03-31 16:04:03.489' WHERE ID = 1 AND LOCKED = FALSE;
+UPDATE public.databasechangeloglock SET LOCKED = TRUE, LOCKEDBY = '127.0.0.1 (127.0.0.1)', LOCKGRANTED = '2022-03-31 16:04:03.489' WHERE ID = 1 AND LOCKED = FALSE;
 
 SET SEARCH_PATH TO public;
 
