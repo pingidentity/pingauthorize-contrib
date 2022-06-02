@@ -22,7 +22,7 @@ createdb my_pap_db
 ```
 3. Run the `init-policy-database.sql` script against the new database.
 ```
-psql --dbname=my_pap_db --file="<pingauthorize-contrib-root>/sql/postgresql/init-policy-database.sql"
+psql --dbname=my_pap_db --file="<pingauthorize-contrib-root>/sql/postgresql/init-policy-database.sql" >/dev/null
 ```
 You should now have an initialized policy database. For instructions on configuring the Policy Editor to connect to
 your PostgreSQL instance, see "[Installing the PingAuthorize Policy Editor manually](https://docs.pingidentity.com/csh?Product=paz-90&context=pingauthorize_install_pe_noninteractive)".
