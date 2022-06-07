@@ -3,7 +3,7 @@ This directory contains SQL scripts to initialize and upgrade a PingAuthorize Po
 database PostgreSQL implementation. Use the `init-policy-database.sql` script to initialize an empty database
 and grant access to `pap_user` (the suggested application username).
 > :warning: **Before starting**, please verify that you are using a supported PostgreSQL installation by referencing
-the [PingAuthorize documentation](https://docs.pingidentity.com/csh?Product=paz-90&Page=home).
+the [PingAuthorize documentation](https://docs.pingidentity.com/csh?Product=paz-latest&Page=home).
 ## Manual installation
 This section describes how to initialize a policy database running on a traditional (non-container) system.
 
@@ -25,7 +25,7 @@ createdb my_pap_db
 psql --dbname=my_pap_db --file="<pingauthorize-contrib-root>/sql/postgresql/init-policy-database.sql" >/dev/null
 ```
 You should now have an initialized policy database. For instructions on configuring the Policy Editor to connect to
-your PostgreSQL instance, see "[Installing the PingAuthorize Policy Editor manually](https://docs.pingidentity.com/csh?Product=paz-90&context=pingauthorize_install_pe_noninteractive)".
+your PostgreSQL instance, see "[Installing the PingAuthorize Policy Editor manually](https://docs.pingidentity.com/csh?Product=paz-latest&context=paz_install_pe_noninteractive)".
 
 ## Docker installation
 This section describes how to use the scripts in this directory to initialize a policy database running the official
@@ -73,6 +73,6 @@ docker run -it --rm \
 ```
 You should now have an initialized policy database in your container. Run the PingAuthorize Policy Editor on the
 same network, providing the appropriate environment variables to connect to the PostgreSQL instance 
-(see "[Installing PingAuthorize Policy Editor using Docker](https://docs.pingidentity.com/csh?Product=paz-90&context=pingauthorize_install_pe_docker)"
-for instructions on how to run the container and "[Starting PingAuthorize Policy Editor](https://docs.pingidentity.com/csh?Product=paz-90&context=pingauthorize_start_pe)"
+(see "[Installing PingAuthorize Policy Editor using Docker](https://docs.pingidentity.com/csh?Product=paz-latest&context=paz_install_pe_docker)"
+for instructions on how to run the container and "[Starting PingAuthorize Policy Editor](https://docs.pingidentity.com/csh?Product=paz-latest&context=paz_start_pe)"
 for more details on the available environment variables).
