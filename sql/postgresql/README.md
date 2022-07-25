@@ -25,7 +25,7 @@ createdb my_pap_db
 psql --dbname=my_pap_db --file="<pingauthorize-contrib-root>/sql/postgresql/init-policy-database.sql" >/dev/null
 ```
 You should now have an initialized policy database. For instructions on configuring the Policy Editor to connect to
-your PostgreSQL instance, see "[Installing the PingAuthorize Policy Editor manually](https://docs.pingidentity.com/csh?Product=paz-latest&context=paz_install_pe_noninteractive)".
+your PostgreSQL instance, see [Installing the PingAuthorize Policy Editor manually](https://docs.pingidentity.com/csh?Product=paz-latest&context=paz_install_pe_noninteractive).
 
 ### Upgrading an existing policy database to a newer schema
 1. Verify the current version of your policy database using one of the following methods.
