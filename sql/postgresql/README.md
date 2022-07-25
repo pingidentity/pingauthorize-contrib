@@ -34,7 +34,7 @@ your PostgreSQL instance, see [Installing the PingAuthorize Policy Editor manual
 **Optional** - Access `my_pap_db` and query the `TAG` column of `my_pap_db.databasechangelog`
 
 ```
-psql -d my_pap_db
+psql --dbname=my_pap_db
 ```
 
 ```
@@ -69,9 +69,9 @@ When executing `bin/start-server` the application checks if the database schema 
 
 _The policy database at `'jdbc:postgresql://<postgresql_host>:<postgresql_port>/my_pap_db'` is older than this version of `PingAuthorize (9.1.0.0)`. Please use the following scripts to upgrade the policy database before running `start-server` again:_
 
-_https://github.com/pingidentity/pingauthorize-contrib/blob/main/sql/postgresql/9.1-EA.sql_
+_A) https://github.com/pingidentity/pingauthorize-contrib/blob/main/sql/postgresql/9.1-EA.sql_
 
-_https://github.com/pingidentity/pingauthorize-contrib/blob/main/sql/postgresql/9.1-GA.sql_
+_B) https://github.com/pingidentity/pingauthorize-contrib/blob/main/sql/postgresql/9.1-GA.sql_
 
 
 2. Download and apply the upgrade scripts for the policy database versions between your current version and the target version.
