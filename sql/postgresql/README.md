@@ -27,19 +27,25 @@ psql --dbname=my_pap_db --file="<pingauthorize-contrib-root>/sql/postgresql/init
 You should now have an initialized policy database. For instructions on configuring the Policy Editor to connect to
 your PostgreSQL instance, see [Installing the PingAuthorize Policy Editor manually](https://docs.pingidentity.com/csh?Product=paz-latest&context=paz_install_pe_noninteractive).
 
+
 ### Upgrading an existing policy database to a newer schema
 1. Verify the current version of your policy database using one of the following methods.
 
 **Optional** - Access `my_pap_db` and query the `TAG` column of `my_pap_db.databasechangelog`
 
-`psql -U postgres -d my_pap_db`
+```
+psql -U postgres -d my_pap_db
+```
 
-`SELECT TAG FROM DATABASECHANGELOG WHERE TAG IS NOT NULL ORDER BY TAG DESC LIMIT 1;`
+```
+SELECT TAG FROM DATABASECHANGELOG WHERE TAG IS NOT NULL ORDER BY TAG DESC LIMIT 1;
+```
 
 **Optional** - Follow the [steps to non-interactively set up](https://docs.pingidentity.com/csh?Product=paz-latest&context=paz_install_pe_noninteractive)
    the target version of the Policy Editor. If your schema is out of date, you will be prompted to run the intermediate upgrade scripts sequentially.
 
-`bin/setup demo \
+```
+bin/setup demo \
   --adminUsername admin \
   --dbConnectionString "jdbc:postgresql://<host>:<postgresql_port>/my_pap_db" \
   --dbAppUsername "<postgres user>" \
@@ -48,13 +54,16 @@ your PostgreSQL instance, see [Installing the PingAuthorize Policy Editor manual
   --hostname <host> \
   --port <pap port> \
   --adminPort <admin port> \
-  --licenseKeyFile <license>`
+  --licenseKeyFile <license>
+```
 
 _Setup completed successfully_
 
 _Please start the server by running bin/start-server_
 
-`<PingAuthorize-PAP>bin/start-server`
+```
+<PingAuthorize-PAP>bin/start-server
+```
 
 _The policy database at 'jdbc:postgresql://localhost:5432/my_pap_db' is older than this version of PingAuthorize (9.1.0.0). Please use the following scripts to upgrade the policy database before running start-server again:_
 
@@ -66,13 +75,21 @@ _https://github.com/pingidentity/pingauthorize-contrib/blob/main/sql/postgresql/
 
 For example, in order to upgrade from `9.0-GA` to `9.1-GA`, both the `9.1-EA`, and `9.1-GA` upgrade scripts must be applied.
 
-`wget https://raw.githubusercontent.com/pingidentity/pingauthorize-contrib/main/sql/postgresql/9.1-EA.sql`
+```
+wget https://raw.githubusercontent.com/pingidentity/pingauthorize-contrib/main/sql/postgresql/9.1-EA.sql
+```
 
-`psql --dbname=my_pap_db --file=9.1-EA.sql >/dev/null`
+```
+psql --dbname=my_pap_db --file=9.1-EA.sql >/dev/null
+```
 
-`wget https://raw.githubusercontent.com/pingidentity/pingauthorize-contrib/main/sql/postgresql/9.1-GA.sql`
+```
+wget https://raw.githubusercontent.com/pingidentity/pingauthorize-contrib/main/sql/postgresql/9.1-GA.sql
+```
 
-`psql --dbname=my_pap_db --file=9.1-GA.sql >/dev/null`
+```
+psql --dbname=my_pap_db --file=9.1-GA.sql >/dev/null
+```
 
 After you apply the necessary upgrade scripts, the policy database upgrade is complete.
 
