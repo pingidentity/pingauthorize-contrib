@@ -64,7 +64,7 @@ _https://github.com/pingidentity/pingauthorize-contrib/blob/main/sql/postgresql/
 
 2. Download and apply the upgrade scripts between your current version and the target version.
 
-For example - upgrading from `9.0-GA` to `9.1-GA`. Between these versions, both the `9.1-EA`, and `9.1-GA` upgrade scripts must be applied.
+For example, in order to upgrade from `9.0-GA` to `9.1-GA`, both the `9.1-EA`, and `9.1-GA` upgrade scripts must be applied.
 
 `wget https://raw.githubusercontent.com/pingidentity/pingauthorize-contrib/main/sql/postgresql/9.1-EA.sql`
 
