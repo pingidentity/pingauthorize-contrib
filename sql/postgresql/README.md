@@ -34,7 +34,7 @@ your PostgreSQL instance, see [Installing the PingAuthorize Policy Editor manual
 **Optional** - Access `my_pap_db` and query the `TAG` column of `my_pap_db.databasechangelog`
 
 ```
-psql -U postgres -d my_pap_db
+psql -d my_pap_db
 ```
 
 ```
@@ -42,34 +42,37 @@ SELECT TAG FROM DATABASECHANGELOG WHERE TAG IS NOT NULL ORDER BY TAG DESC LIMIT 
 ```
 
 **Optional** - Follow the [steps to non-interactively set up](https://docs.pingidentity.com/csh?Product=paz-latest&context=paz_install_pe_noninteractive)
-   the target version of the Policy Editor. If your schema is out of date, you will be prompted to run the intermediate upgrade scripts sequentially.
+   a **fresh installation** of the target version of the Policy Editor.
+
+   An example setup script is provided below should you wish to avoid affecting your existing installation files.
+
+   **Note**: Setup is intended to be run on a new installation, without any existing configuration.
 
 ```
 bin/setup demo \
   --adminUsername admin \
-  --dbConnectionString "jdbc:postgresql://<host>:<postgresql_port>/my_pap_db" \
-  --dbAppUsername "<postgres user>" \
+  --dbConnectionString "jdbc:postgresql://<postgresql_host>:<postgresql_port>/my_pap_db" \
+  --dbAppUsername "<postgres_user>" \
   --generateSelfSignedCertificate \
   --decisionPointSharedSecret pingauthorize \
   --hostname <host> \
-  --port <pap port> \
-  --adminPort <admin port> \
+  --port <pap_port> \
+  --adminPort <admin_port> \
   --licenseKeyFile <license>
 ```
 
-_Setup completed successfully_
-
-_Please start the server by running bin/start-server_
+When executing `bin/start-server` the application checks if the database schema is misaligned with `PingAuthorize-PAP`, if so, you will be provided the locations of the necessary upgrade scripts.
 
 ```
-<PingAuthorize-PAP>bin/start-server
+<PingAuthorize-PAP>/bin/start-server
 ```
 
-_The policy database at 'jdbc:postgresql://localhost:5432/my_pap_db' is older than this version of PingAuthorize (9.1.0.0). Please use the following scripts to upgrade the policy database before running start-server again:_
+_The policy database at `'jdbc:postgresql://<postgresql_host>:<postgresql_port>/my_pap_db'` is older than this version of `PingAuthorize (9.1.0.0)`. Please use the following scripts to upgrade the policy database before running `start-server` again:_
+
+_https://github.com/pingidentity/pingauthorize-contrib/blob/main/sql/postgresql/9.1-EA.sql_
 
 _https://github.com/pingidentity/pingauthorize-contrib/blob/main/sql/postgresql/9.1-GA.sql_
 
-_https://github.com/pingidentity/pingauthorize-contrib/blob/main/sql/postgresql/9.1-EA.sql_
 
 2. Download and apply the upgrade scripts for the policy database versions between your current version and the target version.
 
@@ -86,6 +89,7 @@ psql --dbname=my_pap_db --file=9.1-EA.sql >/dev/null
 ```
 wget https://raw.githubusercontent.com/pingidentity/pingauthorize-contrib/main/sql/postgresql/9.1-GA.sql
 ```
+
 
 ```
 psql --dbname=my_pap_db --file=9.1-GA.sql >/dev/null
