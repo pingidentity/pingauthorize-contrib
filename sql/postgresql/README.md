@@ -36,7 +36,7 @@ your PostgreSQL instance, see "[Installing the PingAuthorize Policy Editor manua
 
 `SELECT TAG FROM DATABASECHANGELOG WHERE TAG IS NOT NULL ORDER BY TAG DESC LIMIT 1;`
 
-**Optional** - Follow the "[Steps to non-interactively set up](https://docs.pingidentity.com/bundle/pingauthorize-91/page/hnc1585320115289.html#hnc1585320115289)"
+**Optional** - Follow the [steps to non-interactively set up](https://docs.pingidentity.com/csh?Product=paz-latest&context=paz_install_pe_noninteractive)
    the target version of the Policy Editor. If your schema is out of date, you will be prompted to run the intermediate upgrade scripts sequentially.
 
 `bin/setup demo \
