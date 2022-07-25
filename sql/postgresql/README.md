@@ -74,7 +74,7 @@ For example - upgrading from `9.0-GA` to `9.1-GA`. Between these versions, both 
 
 `psql --dbname=my_pap_db --file=9.1-GA.sql >/dev/null`
 
-At this point the upgrade is complete.
+After you apply the necessary upgrade scripts, the policy database upgrade is complete.
 
 ## Docker installation
 This section describes how to use the scripts in this directory to initialize a policy database running the official
