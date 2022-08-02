@@ -29,7 +29,7 @@ your PostgreSQL instance, see [Installing the PingAuthorize Policy Editor manual
 
 
 ### Upgrading an existing policy database to a newer schema
-1. Verify the current version of your policy database using one of the following methods.
+1. Verify the current version of your policy database.
 
 **Optional** - Follow the [steps to non-interactively set up](https://docs.pingidentity.com/csh?Product=paz-latest&context=paz_install_pe_noninteractive)
    a **fresh installation** of the target version of the Policy Editor.
