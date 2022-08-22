@@ -1,6 +1,6 @@
-# PingAuthorize Policy Editor PostgreSQL Scripts
+# PingAuthorize Policy Editor PostgreSQL Scripts (9.0 - 9.1)
 This directory contains SQL scripts to initialize and upgrade a PingAuthorize Policy Editor policy
-database PostgreSQL implementation. Use the `init-policy-database.sql` script to initialize an empty database
+database PostgreSQL implementation for versions `9.0` - `9.1`. Use the `init-policy-database.sql` script to initialize an empty database
 and grant access to `pap_user` (the suggested application username).
 > :warning: **Before starting**, please verify that you are using a supported PostgreSQL installation by referencing
 the [PingAuthorize documentation](https://docs.pingidentity.com/csh?Product=paz-latest&Page=home).
