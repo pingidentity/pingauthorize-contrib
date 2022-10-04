@@ -1,4 +1,5 @@
 # PingAuthorize Policy Editor PostgreSQL Scripts (9.0 - 9.1)
+> **Warning**: The following instructions apply only to PingAuthorize versions 9.0.x.x and 9.1.x.x. Earlier versions did not support PostgreSQL, and later versions require the db-cli tool to initialize and upgrade PostgreSQL databases.
 This directory contains SQL scripts to initialize and upgrade a PingAuthorize Policy Editor policy
 database PostgreSQL implementation for versions `9.0` - `9.1`. Use the `init-policy-database.sql` script to initialize an empty database
 and grant access to `pap_user` (the suggested application username).
